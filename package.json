@@ -1,0 +1,18 @@
+{
+  "name": "ta-puppeteer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "summer.gan",
+  "license": "MIT",
+  "devDependencies": {
+    "chalk": "^2.3.0",
+    "jest": "^22.0.0",
+    "prettier": "^1.9.2",
+    "puppeteer": "^1.1.0",
+    "rimraf": "^2.6.2"
+  }
+}
