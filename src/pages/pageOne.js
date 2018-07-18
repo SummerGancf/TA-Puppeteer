@@ -1,4 +1,4 @@
-const actions = require('../../packages/basic/matchs-action/actions.js')
+const actions = require('../basic/matchs-action/actions.js')
 const searchbox = '.b_searchbox'
 const Submit= '.b_searchboxSubmit';
 async function inputSearchbox(page) {

@@ -1,6 +1,6 @@
 module.exports = {
-  globalSetup: './packages/basic/puppeteer-environment/setup.js',
-  globalTeardown: './packages/basic/puppeteer-environment/teardown.js',
-  testEnvironment: './packages/basic/puppeteer-environment/puppeteerEnvironment.js',
-  setupTestFrameworkScriptFile: "./packages/basic/puppeteer-expect",
+  globalSetup: './src/basic/puppeteer-environment/setup.js',
+  globalTeardown: './src/basic/puppeteer-environment/teardown.js',
+  testEnvironment: './src/basic/puppeteer-environment/puppeteerEnvironment.js',
+  // setupTestFrameworkScriptFile: "./src/basic/puppeteer-expect",
 }

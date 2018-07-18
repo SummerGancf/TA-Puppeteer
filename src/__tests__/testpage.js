@@ -1,4 +1,4 @@
-var step = require('../../packages/unitSteps/pageOneStep1.js')
+var step = require('../unitSteps/pageOneStep1.js')
 
 const timeout = 5000
 
