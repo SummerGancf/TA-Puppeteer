@@ -5,6 +5,8 @@ const fs = require('fs')
 // const os = require('os')
 // const path = require('path')
 const constants = require('./constants')
+const pti = require('puppeteer-to-istanbul')
+
 
 class PuppeteerEnvironment extends NodeEnvironment {
   constructor(config) {
@@ -23,15 +25,33 @@ class PuppeteerEnvironment extends NodeEnvironment {
     })
 
     this.global.page = await this.global.__BROWSER__.newPage()
-
+    await Promise.all([
+      this.global.page.coverage.startJSCoverage(),
+      this.global.page.coverage.startCSSCoverage()
+    ])
   }
 
   async teardown() {
     console.log(chalk.yellow('Teardown Test Environment.'))
     await super.teardown()
+
+    const [jsCoverage, cssCoverage] = await Promise.all([
+      this.global.page.coverage.stopJSCoverage(),
+      this.global.page.coverage.stopCSSCoverage(),
+    ]);
+    let totalBytes = 0;
+    let usedBytes = 0;
+    const coverage = [...jsCoverage, ...cssCoverage];
+    for (const entry of coverage) {
+      totalBytes += entry.text.length;
+      for (const range of entry.ranges)
+        usedBytes += range.end - range.start - 1;
+    }
+    console.log(`Bytes used: ${usedBytes / totalBytes * 100}%`);
+    pti.write(jsCoverage)
+
     this.global.page.close()
   }
-
   runScript(script) {
     return super.runScript(script)
   }
